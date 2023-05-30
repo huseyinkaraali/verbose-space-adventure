@@ -1,0 +1,98 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "(gdb) Başlat",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "Program adını girin, örneğin: ${workspaceFolder}/a.out",
+        "args": [],
+        "stopAtEntry": false,
+        "cwd": "${fileDirname}",
+        "environment": [],
+        "externalConsole": false,
+        "MIMode": "gdb",
+        "setupCommands": [
+            {
+                "description": "gdb için düzgün yazdırmayı etkinleştir",
+                "text": "-enable-pretty-printing",
+                "ignoreFailures": true
+            },
+            {
+                "description": "Ayrıştırılmış Kod Varyantını Intel olarak ayarla",
+                "text": "-gdb-set disassembly-flavor intel",
+                "ignoreFailures": true
+            }
+        ]
+      },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Cargo launch",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--lib"
+                ]
+            },
+            "args": []
+        },
+        {
+            "type": "lldb",
+            "request": "custom",
+            "name": "Custom launch",
+            "targetCreateCommands": [
+                "target create ${workspaceFolder}/<program>"
+            ],
+            "processCreateCommands": [
+                "settings set target.run-args value1 value2 value3",
+                "process launch"
+            ]
+        },
+        {
+            "name": "C/C++ Runner: Debug Session",
+            "type": "cppdbg",
+            "request": "launch",
+            "args": [],
+            "stopAtEntry": false,
+            "externalConsole": false,
+            "cwd": "/workspaces/codespaces-blank",
+            "program": "/workspaces/codespaces-blank/build/Debug/outDebug",
+            "MIMode": "gdb",
+            "miDebuggerPath": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "C/C++: gcc-9 etkin dosyayı derle ve dosyada hata ayıkla",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "gdb için düzgün yazdırmayı etkinleştir",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Ayrıştırılmış Kod Varyantını Intel olarak ayarla",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "C/C++: gcc-9 etkin dosyayı derle",
+            "miDebuggerPath": "/usr/bin/gdb"
+        }
+    ]
+}
